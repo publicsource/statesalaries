@@ -1,0 +1,1116 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{statesal\_2018}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://projects.publicsource.org/2018\PYZus{}statesalaries/state\PYZus{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:}                agency       last\_name  first\_name  middle\_name  \textbackslash{}
+         0               Aging    Laudenslager       Kathy            A   
+         1               Aging        McDaniel       Megan           C.   
+         2               Aging       Burhannan        Rita          Gay   
+         3               Aging          Rhodes       Janis            L   
+         4               Aging          Schell       Trudy            L   
+         5               Aging           Allen      Ronald            R   
+         6               Aging             Fox        Abby            J   
+         7               Aging           Lorah     Rebecca           D.   
+         8               Aging          Paulus        Rose            M   
+         9               Aging          Horner      Steven            B   
+         10              Aging  Beers-Franklin       Tamea         Lynn   
+         11              Aging         Bennett     Lindsey          Rae   
+         12              Aging         Cenname  Anna Marie            E   
+         13              Aging          Cherry      Robert         John   
+         14              Aging         Claroni       Rocco            L   
+         15              Aging            Cree       Susan       Elaine   
+         16              Aging          Deppen     Barbara            G   
+         17              Aging         Dunston        Troy            D   
+         18              Aging         Ehrhart        Dana            M   
+         19              Aging          Gerber        Beth         Anne   
+         20              Aging         Glidden    Michelle            S   
+         21              Aging       Hollywood       Trula          NaN   
+         22              Aging            Kell    Veronica        Lynne   
+         23              Aging            Kyle     Katrina           K.   
+         24              Aging           Lomax       Dowel            E   
+         25              Aging          Nguyen        Uyen           P.   
+         26              Aging         Rodgers      Steven            L   
+         27              Aging          Rogers      Roslyn       Sylvia   
+         28              Aging            Seby       Julie    Elizabeth   
+         29              Aging            Toro      Carmen            M   
+         {\ldots}               {\ldots}             {\ldots}         {\ldots}          {\ldots}   
+         89889  Transportation        Peterson        Ross            E   
+         89890  Transportation         Polanis     Jeffrey            F   
+         89891  Transportation         Proctor     Jeffrey          Ray   
+         89892  Transportation             Pyo     Anthony         John   
+         89893  Transportation           Rowan      Joseph            P   
+         89894  Transportation        Schwartz       David            A   
+         89895  Transportation          Seeley        John            D   
+         89896  Transportation          Sienko      Daniel            J   
+         89897  Transportation       Slaughter        Troy          NaN   
+         89898  Transportation           Smith    Clifford            W   
+         89899  Transportation          Sonney        Eric       August   
+         89900  Transportation        St Clair       Scott            P   
+         89901  Transportation           Tokay      Ronald            J   
+         89902  Transportation           Tomko     Michael            K   
+         89903  Transportation        Tridente     Corrado      Leonard   
+         89904  Transportation        Vranicar     Michael            D   
+         89905  Transportation          Wagner     Patrick            J   
+         89906  Transportation          Weikel       Ricky           R.   
+         89907  Transportation          Whalen      Joseph            H   
+         89908  Transportation        Williams      Joseph            T   
+         89909  Transportation         Withers       Jacob      Richard   
+         89910  Transportation           Womer       Ethan       Daniel   
+         89911  Transportation        Woodbury        Noah  Clifton Toy   
+         89912  Transportation            Wyne        Gary            I   
+         89913  Transportation           Zoria      Steven            A   
+         89914  Transportation        Bickford      Robert            E   
+         89915  Transportation       Eckenroth     Brandon      Michael   
+         89916  Transportation           Clark      Dennis           L.   
+         89917  Transportation       Kishbaugh      Donald            G   
+         89918  Transportation          Weaver    Theodore            R   
+         
+                              job\_name original\_hire\_dt incumbent\_entered\_pos  \textbackslash{}
+         0                      Acct 3          5/28/97               7/26/14   
+         1                 Admv Asst 1           3/7/05               7/12/14   
+         2                  Admv Ofr 1          6/24/71              10/24/15   
+         3                  Admv Ofr 1           8/2/93               5/18/13   
+         4                  Admv Ofr 1          9/29/75               7/21/07   
+         5                  Admv Ofr 2          4/20/77              11/15/97   
+         6                  Admv Ofr 2          8/23/04              10/10/15   
+         7                  Admv Ofr 3           1/3/05              11/16/13   
+         8                  Admv Ofr 4          4/18/83               7/27/13   
+         9                  Admv Ofr 5          6/12/90              11/12/16   
+         10           Aging Srvs Spcst          2/18/03               7/29/17   
+         11           Aging Srvs Spcst          6/27/16               9/16/17   
+         12           Aging Srvs Spcst           1/8/96                   NaN   
+         13           Aging Srvs Spcst          11/8/10               9/10/16   
+         14           Aging Srvs Spcst          5/20/82              10/10/17   
+         15           Aging Srvs Spcst          12/5/86               3/15/14   
+         16           Aging Srvs Spcst          5/26/98                1/3/15   
+         17           Aging Srvs Spcst         11/20/92                5/6/17   
+         18           Aging Srvs Spcst           1/2/01               7/12/08   
+         19           Aging Srvs Spcst           3/3/14                3/3/14   
+         20           Aging Srvs Spcst          5/24/04               4/29/17   
+         21           Aging Srvs Spcst         12/15/08               6/16/14   
+         22           Aging Srvs Spcst          12/6/10               8/26/17   
+         23           Aging Srvs Spcst         12/10/07               10/3/15   
+         24           Aging Srvs Spcst          1/24/11               9/16/17   
+         25           Aging Srvs Spcst          7/21/08               2/22/14   
+         26           Aging Srvs Spcst          7/28/14               5/28/16   
+         27           Aging Srvs Spcst          5/11/87               7/13/13   
+         28           Aging Srvs Spcst          7/22/02                3/1/14   
+         29           Aging Srvs Spcst          3/30/88              11/11/17   
+         {\ldots}                       {\ldots}              {\ldots}                   {\ldots}   
+         89889                    Wldr          3/25/13               3/25/13   
+         89890                    Wldr          8/29/11               8/29/11   
+         89891                    Wldr         11/19/12              11/18/13   
+         89892                    Wldr          10/1/12               4/30/16   
+         89893                    Wldr          8/12/13               8/12/13   
+         89894                    Wldr          5/27/99               5/27/99   
+         89895                    Wldr           6/3/02                6/3/02   
+         89896                    Wldr           6/3/02                6/3/02   
+         89897                    Wldr          9/18/17               9/18/17   
+         89898                    Wldr           3/6/95                3/6/95   
+         89899                    Wldr          1/24/11               1/24/11   
+         89900                    Wldr         11/15/04               7/25/05   
+         89901                    Wldr         11/20/00              11/20/00   
+         89902                    Wldr          3/15/82                   NaN   
+         89903                    Wldr         10/20/14              11/15/14   
+         89904                    Wldr          11/8/99               9/19/15   
+         89905                    Wldr         12/15/14              12/15/14   
+         89906                    Wldr           3/5/07                3/5/07   
+         89907                    Wldr           1/9/06                1/9/06   
+         89908                    Wldr           4/2/01                8/4/07   
+         89909                    Wldr          10/2/17               10/2/17   
+         89910                    Wldr         10/17/16               2/18/17   
+         89911                    Wldr           9/8/15                9/8/15   
+         89912                    Wldr          10/4/99                8/4/07   
+         89913                    Wldr           2/9/04               3/17/07   
+         89914   Wstewtr Trmt Plnt Opr           1/6/14                1/6/14   
+         89915   Wstewtr Trmt Plnt Opr           5/5/14              11/12/16   
+         89916  Wstewtr Trmt Plnt Supv         10/15/07               10/3/15   
+         89917  Wstewtr Trmt Plnt Supv          8/16/04               5/26/13   
+         89918  Wstewtr Trmt Plnt Supv           8/8/05               1/12/13   
+         
+               separation\_dt  hourly  base\_salary  actual\_salary\_2017  overtime\_2017  \textbackslash{}
+         0               NaN     NaN      63785.0            62893.52            NaN   
+         1               NaN     NaN      41956.0            41370.77            NaN   
+         2               NaN     NaN      43775.0            43162.50            NaN   
+         3               NaN     NaN      54690.0            53923.88            NaN   
+         4               NaN     NaN      45829.0            45188.26            NaN   
+         5               NaN     NaN      72822.0            71804.63            NaN   
+         6               NaN     NaN      54690.0            64005.31            NaN   
+         7               NaN     NaN      58465.0            57643.89            NaN   
+         8               NaN     NaN      94846.0            93522.39            NaN   
+         9               NaN     NaN     105898.0           104420.25            NaN   
+         10              NaN     NaN      61066.0            60215.63            NaN   
+         11              NaN     NaN      54690.0            53923.88            NaN   
+         12           4/1/17     NaN      72998.0            22392.00            NaN   
+         13              NaN     NaN      55844.0            55063.52            NaN   
+         14              NaN   27.96          NaN            28356.45            NaN   
+         15              NaN     NaN      69653.0            68678.27            NaN   
+         16              NaN     NaN      57174.0            56378.64            NaN   
+         17              NaN     NaN      71218.0            70227.38            NaN   
+         18              NaN     NaN      61066.0            54616.05            NaN   
+         19              NaN     NaN      55844.0            55063.51            NaN   
+         20              NaN     NaN      62455.0            59598.39            NaN   
+         21              NaN     NaN      55844.0            55063.51            NaN   
+         22              NaN     NaN      54690.0            49735.50            NaN   
+         23              NaN     NaN      58465.0            57643.89            NaN   
+         24              NaN     NaN      57174.0            53813.25            NaN   
+         25              NaN     NaN      58465.0            57643.89            NaN   
+         26              NaN     NaN      55844.0            55063.52            NaN   
+         27              NaN     NaN      83052.0            81894.38            NaN   
+         28              NaN     NaN      57174.0            56378.64            NaN   
+         29              NaN     NaN      76069.0            75009.01            NaN   
+         {\ldots}             {\ldots}     {\ldots}          {\ldots}                 {\ldots}            {\ldots}   
+         89889           NaN     NaN      34934.0            34542.38        1518.79   
+         89890           NaN     NaN      35580.0            35095.09        1972.79   
+         89891           NaN     NaN      34210.0            34552.07        5615.56   
+         89892           NaN     NaN      34210.0            34282.51        1307.97   
+         89893           NaN     NaN      34210.0            34246.53        4083.25   
+         89894           NaN     NaN      43775.0            43207.26         684.78   
+         89895           NaN     NaN      41076.0            40978.15        4860.56   
+         89896           NaN     NaN      41076.0            40909.38        3411.95   
+         89897           NaN     NaN      32841.0             7555.51         172.14   
+         89898           NaN     NaN      47883.0            47221.50         678.00   
+         89899           NaN     NaN      35580.0            36220.27        7018.70   
+         89900           NaN     NaN      39413.0            39473.02        1827.02   
+         89901           NaN     NaN      42876.0            42984.93        7988.30   
+         89902        4/1/17     NaN      48039.0            14736.00            NaN   
+         89903           NaN     NaN      33506.0            33060.33       11172.40   
+         89904           NaN     NaN      41076.0            40504.15        2163.26   
+         89905           NaN     NaN      33506.0            33033.80        1780.85   
+         89906           NaN     NaN      37868.0            37338.75        1752.84   
+         89907           NaN     NaN      39413.0            38979.81        1693.89   
+         89908           NaN     NaN      41956.0            41380.29        6966.66   
+         89909           NaN   16.79          NaN             5641.49            NaN   
+         89910           NaN     NaN      32841.0            32632.68        3063.40   
+         89911           NaN     NaN      32841.0            32373.28        1151.67   
+         89912           NaN     NaN      41076.0            40504.15         259.78   
+         89913           NaN     NaN      40254.0            40557.48        4936.62   
+         89914           NaN     NaN      34210.0            33735.76        1127.73   
+         89915           NaN     NaN      32841.0            34042.50        3599.91   
+         89916           NaN     NaN      38611.0            38082.13        7609.02   
+         89917           NaN     NaN      52284.0            51660.01        6606.56   
+         89918           NaN     NaN      42876.0            42291.88        3140.99   
+         
+                leave\_payout\_2017  
+         0                    NaN  
+         1                    NaN  
+         2                    NaN  
+         3                    NaN  
+         4                    NaN  
+         5                    NaN  
+         6                    NaN  
+         7                    NaN  
+         8                    NaN  
+         9                    NaN  
+         10                   NaN  
+         11                   NaN  
+         12              50749.98  
+         13                   NaN  
+         14              21110.16  
+         15                   NaN  
+         16                   NaN  
+         17                   NaN  
+         18                   NaN  
+         19                   NaN  
+         20                   NaN  
+         21                   NaN  
+         22                   NaN  
+         23                   NaN  
+         24                   NaN  
+         25                   NaN  
+         26                   NaN  
+         27                   NaN  
+         28                   NaN  
+         29                   NaN  
+         {\ldots}                  {\ldots}  
+         89889                NaN  
+         89890                NaN  
+         89891                NaN  
+         89892                NaN  
+         89893                NaN  
+         89894                NaN  
+         89895                NaN  
+         89896                NaN  
+         89897                NaN  
+         89898                NaN  
+         89899                NaN  
+         89900                NaN  
+         89901                NaN  
+         89902           11539.76  
+         89903                NaN  
+         89904                NaN  
+         89905                NaN  
+         89906                NaN  
+         89907                NaN  
+         89908                NaN  
+         89909                NaN  
+         89910                NaN  
+         89911                NaN  
+         89912                NaN  
+         89913                NaN  
+         89914                NaN  
+         89915                NaN  
+         89916                NaN  
+         89917                NaN  
+         89918                NaN  
+         
+         [89919 rows x 13 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{statesal} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{https://projects.publicsource.org/2018\PYZus{}statesalaries/state\PYZus{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:}   agency     last\_name first\_name middle\_name     job\_name original\_hire\_dt  \textbackslash{}
+         0  Aging  Laudenslager      Kathy           A       Acct 3          5/28/97   
+         1  Aging      McDaniel      Megan          C.  Admv Asst 1           3/7/05   
+         2  Aging     Burhannan       Rita         Gay   Admv Ofr 1          6/24/71   
+         3  Aging        Rhodes      Janis           L   Admv Ofr 1           8/2/93   
+         4  Aging        Schell      Trudy           L   Admv Ofr 1          9/29/75   
+         
+           incumbent\_entered\_pos separation\_dt  hourly  base\_salary  \textbackslash{}
+         0               7/26/14           NaN     NaN      63785.0   
+         1               7/12/14           NaN     NaN      41956.0   
+         2              10/24/15           NaN     NaN      43775.0   
+         3               5/18/13           NaN     NaN      54690.0   
+         4               7/21/07           NaN     NaN      45829.0   
+         
+            actual\_salary\_2017  overtime\_2017  leave\_payout\_2017  
+         0            62893.52            NaN                NaN  
+         1            41370.77            NaN                NaN  
+         2            43162.50            NaN                NaN  
+         3            53923.88            NaN                NaN  
+         4            45188.26            NaN                NaN  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 89919 entries, 0 to 89918
+Data columns (total 13 columns):
+agency                   89919 non-null object
+last\_name                89919 non-null object
+first\_name               77288 non-null object
+middle\_name              68077 non-null object
+job\_name                 89919 non-null object
+original\_hire\_dt         89919 non-null object
+incumbent\_entered\_pos    79380 non-null object
+separation\_dt            10539 non-null object
+hourly                   12132 non-null float64
+base\_salary              77785 non-null float64
+actual\_salary\_2017       88504 non-null float64
+overtime\_2017            51853 non-null float64
+leave\_payout\_2017        7851 non-null float64
+dtypes: float64(5), object(8)
+memory usage: 8.9+ MB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{actual\PYZus{}salary\PYZus{}2017}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}61}]:}        index  actual\_salary\_2017
+         0          0            62893.52
+         1          1            41370.77
+         2          2            43162.50
+         3          3            53923.88
+         4          4            45188.26
+         5          5            71804.63
+         6          6            64005.31
+         7          7            57643.89
+         8          8            93522.39
+         9          9           104420.25
+         10        10            60215.63
+         11        11            53923.88
+         12        12            22392.00
+         13        13            55063.52
+         14        14            28356.45
+         15        15            68678.27
+         16        16            56378.64
+         17        17            70227.38
+         18        18            54616.05
+         19        19            55063.51
+         20        20            59598.39
+         21        21            55063.51
+         22        22            49735.50
+         23        23            57643.89
+         24        24            53813.25
+         25        25            57643.89
+         26        26            55063.52
+         27        27            81894.38
+         28        28            56378.64
+         29        29            75009.01
+         {\ldots}      {\ldots}                 {\ldots}
+         89889  89889            34542.38
+         89890  89890            35095.09
+         89891  89891            34552.07
+         89892  89892            34282.51
+         89893  89893            34246.53
+         89894  89894            43207.26
+         89895  89895            40978.15
+         89896  89896            40909.38
+         89897  89897             7555.51
+         89898  89898            47221.50
+         89899  89899            36220.27
+         89900  89900            39473.02
+         89901  89901            42984.93
+         89902  89902            14736.00
+         89903  89903            33060.33
+         89904  89904            40504.15
+         89905  89905            33033.80
+         89906  89906            37338.75
+         89907  89907            38979.81
+         89908  89908            41380.29
+         89909  89909             5641.49
+         89910  89910            32632.68
+         89911  89911            32373.28
+         89912  89912            40504.15
+         89913  89913            40557.48
+         89914  89914            33735.76
+         89915  89915            34042.50
+         89916  89916            38082.13
+         89917  89917            51660.01
+         89918  89918            42291.88
+         
+         [89919 rows x 2 columns]
+\end{Verbatim}
+            
+    \textbf{Note: The above command would not work with column head
+2017\_actual\_salary because it seems pandas does not like numbers to
+start column names. Tried moving date to end of column name, it worked.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{overtime\PYZus{}2017}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:} 233341250.74000004
+\end{Verbatim}
+            
+    \textbf{Note: The above command was not working, so I figured I had to
+change the data types of the columns. This video was helpful
+\textgreater{} https://www.youtube.com/watch?v=V0AWyzVMf54. But that
+still didn't work :( See below note for what I had to do because I reran
+the cells and it will all look like it magically worked the first time!
+... Sadly, it did not, when I originally put the data in they were all
+dtype "object" which pretty much means "string" or "text", but we needed
+the columns with numerical data with decimals to be "floats".}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{dtypes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:} agency                    object
+         last\_name                 object
+         first\_name                object
+         middle\_name               object
+         job\_name                  object
+         original\_hire\_dt          object
+         incumbent\_entered\_pos     object
+         separation\_dt             object
+         hourly                   float64
+         base\_salary              float64
+         actual\_salary\_2017       float64
+         overtime\_2017            float64
+         leave\_payout\_2017        float64
+         dtype: object
+\end{Verbatim}
+            
+    \textbf{Note: Still not working, so in Excel, I converted columns I-M to
+"Number" and remove dollar signs and commas and finally got it working!}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{actual\PYZus{}salary} \PY{o}{=} \PY{n}{statesal}\PY{o}{.}\PY{n}{actual\PYZus{}salary\PYZus{}2017}
+\end{Verbatim}
+
+
+    \textbf{Note: Above creates a variable which stores column
+actual\_salary\_2017 in it so we can run analysis on it instead of
+always have to type out statesal.actual\_salary\_2017, but we certainly
+could do that.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{actual\PYZus{}salary}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} 44640.509999999995
+\end{Verbatim}
+            
+    \textbf{Note: Above calculates overall employee median salary.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{actual\PYZus{}salary}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}66}]:} 4097021128.1000004
+\end{Verbatim}
+            
+    \textbf{Note: Above calculates total amount spent by state of
+Pennsylvania on empoloyee salaries.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{actual\PYZus{}salary\PYZus{}2017}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}67}]:}                               agency last\_name first\_name middle\_name  \textbackslash{}
+         65060  Pub School Employees' Ret Sys  Grossman      James           H   
+         65080  Pub School Employees' Ret Sys   Spiller    Charles           J   
+         65079  Pub School Employees' Ret Sys     Bauer     Thomas          A.   
+         68277       State Employees' Ret Sys     Lewis    Wilbert       Bryan   
+         65146  Pub School Employees' Ret Sys    Devine     Robert           J   
+         
+                                job\_name original\_hire\_dt incumbent\_entered\_pos  \textbackslash{}
+         65060       Chf Invmt Ofr Psers          3/17/97               1/13/14   
+         65080   Dep Chf Invmt Ofr Psers          5/16/94               5/16/94   
+         65079   Dep Chf Invmt Ofr Psers          4/19/16               4/19/16   
+         68277        Chf Invmt Ofr Sers          7/11/16               7/11/16   
+         65146  Mgng Dir Invmt Off PSERS          6/10/91               9/29/14   
+         
+               separation\_dt  hourly  base\_salary  actual\_salary\_2017  overtime\_2017  \textbackslash{}
+         65060           NaN     NaN     407826.0           387184.88            NaN   
+         65080           NaN     NaN     335728.0           318274.50            NaN   
+         65079           NaN     NaN     335728.0           317697.38            NaN   
+         68277           NaN     NaN     286534.0           285655.50            NaN   
+         65146           NaN     NaN     271062.0           257344.13            NaN   
+         
+                leave\_payout\_2017  
+         65060                NaN  
+         65080                NaN  
+         65079                NaN  
+         68277                NaN  
+         65146                NaN  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}69}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{actual\PYZus{}salary\PYZus{}2017}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}69}]:}                               agency          last\_name   first\_name  \textbackslash{}
+         65060  Pub School Employees' Ret Sys           Grossman        James   
+         65080  Pub School Employees' Ret Sys            Spiller      Charles   
+         65079  Pub School Employees' Ret Sys              Bauer       Thomas   
+         68277       State Employees' Ret Sys              Lewis      Wilbert   
+         65146  Pub School Employees' Ret Sys             Devine       Robert   
+         65147  Pub School Employees' Ret Sys               Kemp         John   
+         65306  Pub School Employees' Ret Sys                 Oh        Susan   
+         65304  Pub School Employees' Ret Sys            Foreman       Darren   
+         65058  Pub School Employees' Ret Sys               Carl        Brian   
+         65303  Pub School Employees' Ret Sys               Derr       Steven   
+         65301  Pub School Employees' Ret Sys              Baker  Christopher   
+         47127                 Human Services             Behjat       Shahla   
+         65310  Pub School Employees' Ret Sys            Stalter      William   
+         65305  Pub School Employees' Ret Sys             Little       Robert   
+         65087  Pub School Employees' Ret Sys              Grell         Glen   
+         68298       State Employees' Ret Sys              Nolan        James   
+         68335       State Employees' Ret Sys              Felix        David   
+         65309  Pub School Employees' Ret Sys              Sheva       Joseph   
+         15711                    Corrections             Cooper          NaN   
+         65302  Pub School Employees' Ret Sys             Burton      Jeffrey   
+         65308  Pub School Employees' Ret Sys            Shaffer         Todd   
+         68304       State Employees' Ret Sys             Durbin        David   
+         5116                     Corrections               Noel         Paul   
+         31885              Governor'S Office               Wolf       Thomas   
+         68333       State Employees' Ret Sys              Meyer      Jeffrey   
+         47130                 Human Services               Shah        Hansa   
+         45801                 Human Services            Cherpes      Gregory   
+         68336       State Employees' Ret Sys          Greenberg      Phillip   
+         33926                 Human Services           Gopalani         Aziz   
+         47131                 Human Services            Wildner         Ralf   
+         {\ldots}                              {\ldots}                {\ldots}          {\ldots}   
+         86805                 Transportation             Thiede      Patrice   
+         86806                 Transportation              Thoma      Kenneth   
+         86814                 Transportation             Thomas     Michelle   
+         86827                 Transportation             Thumma        Shane   
+         86836                 Transportation               Todd       Ashley   
+         86856                 Transportation             Troyer        Darin   
+         86936                 Transportation             Wanser       Robert   
+         86966                 Transportation       Webb-Lippert   Kristopher   
+         87034                 Transportation              Wills        Terry   
+         87062                 Transportation              Wolff      Jeffrey   
+         87063                 Transportation           Wolfgang        Jason   
+         87118                 Transportation           Zahniser       Gordon   
+         87120                 Transportation          Zarkevics        Daryl   
+         87419                 Transportation  Carrington-Setzer        Jason   
+         87774                 Transportation           Freiters        Barry   
+         87951                 Transportation         Hattersley         Paul   
+         87958                 Transportation            Hawkins       Lester   
+         88085                 Transportation           Ingerick         Tony   
+         88116                 Transportation              Jones        David   
+         88221                 Transportation           Kokoszka        Allan   
+         88227                 Transportation           Kozlosky       Andrew   
+         88369                 Transportation            Malizia        Floyd   
+         88411                 Transportation            McCarty       Ronald   
+         88446                 Transportation           Mckinley         Dale   
+         88823                 Transportation        Rosenhoover       Jerome   
+         89201                 Transportation             Valick          Jan   
+         89214                 Transportation              Veitz       Martin   
+         89227                 Transportation              Vresk        James   
+         89578                 Transportation            Spatara  Christopher   
+         89870                 Transportation              Kirst       Daniel   
+         
+               middle\_name                  job\_name original\_hire\_dt  \textbackslash{}
+         65060           H       Chf Invmt Ofr Psers          3/17/97   
+         65080           J   Dep Chf Invmt Ofr Psers          5/16/94   
+         65079          A.   Dep Chf Invmt Ofr Psers          4/19/16   
+         68277       Bryan        Chf Invmt Ofr Sers          7/11/16   
+         65146           J  Mgng Dir Invmt Off PSERS          6/10/91   
+         65147           B  Mgng Dir Invmt Off PSERS           5/2/94   
+         65306           E    Sr Mgr Invmt Off PSERS           6/5/95   
+         65304           C    Sr Mgr Invmt Off PSERS          9/10/84   
+         65058           S         Chf Fin Ofr Psers           6/5/95   
+         65303           M    Sr Mgr Invmt Off PSERS          2/23/98   
+         65301           D    Sr Mgr Invmt Off PSERS          2/23/98   
+         47127         NaN         Psychiatrist Supv           7/1/88   
+         65310           P    Sr Mgr Invmt Off PSERS          9/24/01   
+         65305           E    Sr Mgr Invmt Off PSERS          2/16/99   
+         65087           R              Ex Dir Psers          1/23/95   
+         68298           G    Dep Chf Invmt Ofr SERS          6/29/15   
+         68335         NaN       Portflio Mgr 2 Sers          6/17/13   
+         65309           W    Sr Mgr Invmt Off PSERS          8/14/00   
+         15711         NaN                Corr Ofr 2           1/7/91   
+         65302         NaN    Sr Mgr Invmt Off PSERS           8/8/06   
+         65308           J    Sr Mgr Invmt Off PSERS          8/31/15   
+         68304           E               Ex Dir Sers          3/27/80   
+         5116          NaN   Chf Clncl Srvs Div Corr          1/13/14   
+         31885           W                       Gov          2/15/07   
+         68333        Alan    Mgng Dir Invmt Op SERS           9/9/13   
+         47130           K         Psychiatrist Supv           7/1/85   
+         45801           L   Med Dir Off Dvptl Prgms          6/12/87   
+         68336           N       Portflio Mgr 2 Sers          2/21/17   
+         33926           A         Chf Clncl Srvs Mh           7/1/82   
+         47131     Gerhard         Psychiatrist Supv         10/14/08   
+         {\ldots}           {\ldots}                       {\ldots}              {\ldots}   
+         86805           J        Trnspt Equip Opr A         12/11/17   
+         86806     Raymond        Trnspt Equip Opr A         12/11/17   
+         86814       Diane        Trnspt Equip Opr A         11/12/81   
+         86827           M        Trnspt Equip Opr A         12/18/17   
+         86836         NaN        Trnspt Equip Opr A         12/18/17   
+         86856        John        Trnspt Equip Opr A         12/18/17   
+         86936         NaN        Trnspt Equip Opr A         12/26/17   
+         86966         NaN        Trnspt Equip Opr A           1/3/17   
+         87034           L        Trnspt Equip Opr A         12/18/17   
+         87062           A        Trnspt Equip Opr A          4/10/88   
+         87063           K        Trnspt Equip Opr A         12/11/17   
+         87118     Fremont        Trnspt Equip Opr A         11/24/08   
+         87120           E        Trnspt Equip Opr A         12/14/17   
+         87419           S        Trnspt Equip Opr B         10/18/04   
+         87774           E        Trnspt Equip Opr B          12/9/85   
+         87951         NaN        Trnspt Equip Opr B          1/29/07   
+         87958           B        Trnspt Equip Opr B          11/8/99   
+         88085          J.        Trnspt Equip Opr B          10/3/05   
+         88116         NaN        Trnspt Equip Opr B          1/27/94   
+         88221           J        Trnspt Equip Opr B         11/10/08   
+         88227           J        Trnspt Equip Opr B          9/29/03   
+         88369           T        Trnspt Equip Opr B          7/12/93   
+         88411           A        Trnspt Equip Opr B         12/19/11   
+         88446           D        Trnspt Equip Opr B          4/26/99   
+         88823           G        Trnspt Equip Opr B          9/29/97   
+         89201           S        Trnspt Equip Opr B          1/21/85   
+         89214           L        Trnspt Equip Opr B          2/14/94   
+         89227           G        Trnspt Equip Opr B           4/5/99   
+         89578         NaN    Trnspt Equip Opr Spcst          11/1/10   
+         89870           P                      Wldr         12/26/17   
+         
+               incumbent\_entered\_pos separation\_dt  hourly  base\_salary  \textbackslash{}
+         65060               1/13/14           NaN     NaN     407826.0   
+         65080               5/16/94           NaN     NaN     335728.0   
+         65079               4/19/16           NaN     NaN     335728.0   
+         68277               7/11/16           NaN     NaN     286534.0   
+         65146               9/29/14           NaN     NaN     271062.0   
+         65147               4/12/08           NaN     NaN     270202.0   
+         65306               7/31/99           NaN     NaN     245732.0   
+         65304               11/4/02           NaN     NaN     241996.0   
+         65058               9/24/11           NaN     NaN     242779.0   
+         65303                9/8/98           NaN     NaN     237498.0   
+         65301               2/23/98           NaN     NaN     230534.0   
+         47127              10/27/07           NaN     NaN     184959.0   
+         65310               9/24/01           NaN     NaN     227326.0   
+         65305               2/16/99           NaN     NaN     221341.0   
+         65087                5/1/15           NaN     NaN     215004.0   
+         68298               6/29/15           NaN     NaN     213106.0   
+         68335               2/18/17           NaN     NaN     220011.0   
+         65309               6/10/06           NaN     NaN     220363.0   
+         15711                   NaN       6/30/17     NaN      81870.0   
+         65302               10/1/11           NaN     NaN     215610.0   
+         65308               8/31/15           NaN     NaN     216431.0   
+         68304                5/3/12           NaN     NaN     199453.0   
+         5116                1/13/14           NaN     NaN     205047.0   
+         31885               1/20/15           NaN     NaN     192774.0   
+         68333                9/9/13           NaN     NaN     199003.0   
+         47130              10/20/08           NaN     NaN     184959.0   
+         45801               5/11/15           NaN     NaN     188891.0   
+         68336               2/21/17           NaN     NaN     230006.0   
+         33926               8/17/13           NaN     NaN     184959.0   
+         47131              11/19/11           NaN     NaN     184959.0   
+         {\ldots}                     {\ldots}           {\ldots}     {\ldots}          {\ldots}   
+         86805              12/11/17           NaN   17.86          NaN   
+         86806              12/11/17           NaN   14.91          NaN   
+         86814              12/18/17           NaN   17.86          NaN   
+         86827              12/18/17           NaN   14.91          NaN   
+         86836              12/18/17           NaN   17.86          NaN   
+         86856              12/18/17           NaN   14.91          NaN   
+         86936              12/26/17           NaN   17.86          NaN   
+         86966                   NaN        1/4/17   17.51          NaN   
+         87034              12/18/17           NaN   17.86          NaN   
+         87062              12/26/17           NaN   14.91          NaN   
+         87063              12/11/17           NaN   14.91          NaN   
+         87118              12/26/17           NaN   14.91          NaN   
+         87120              12/14/17           NaN   17.86          NaN   
+         87419               6/26/17           NaN   22.46          NaN   
+         87774                   NaN        7/1/17     NaN      48039.0   
+         87951              12/18/17           NaN   21.00          NaN   
+         87958              12/14/17           NaN   21.45          NaN   
+         88085               10/2/16           NaN   18.47          NaN   
+         88116                   NaN        4/1/17   22.46          NaN   
+         88221                   NaN       3/17/17     NaN      40039.0   
+         88227               4/25/09           NaN     NaN      40900.0   
+         88369                   NaN       2/24/17     NaN      48039.0   
+         88411              11/14/15           NaN     NaN      37594.0   
+         88446                3/4/17           NaN   21.35          NaN   
+         88823                   NaN        1/6/17     NaN      41761.0   
+         89201                   NaN        4/1/17   24.56          NaN   
+         89214              12/11/17           NaN   23.93          NaN   
+         89227                   NaN       3/30/17     NaN      41761.0   
+         89578              11/26/16           NaN   19.22          NaN   
+         89870              12/26/17           NaN   16.79          NaN   
+         
+                actual\_salary\_2017  overtime\_2017  leave\_payout\_2017  
+         65060           387184.88            NaN                NaN  
+         65080           318274.50            NaN                NaN  
+         65079           317697.38            NaN                NaN  
+         68277           285655.50            NaN                NaN  
+         65146           257344.13            NaN                NaN  
+         65147           256529.63            NaN                NaN  
+         65306           238344.77            NaN                NaN  
+         65304           231694.88            NaN                NaN  
+         65058           229338.01            NaN                NaN  
+         65303           227383.88            NaN                NaN  
+         65301           226640.63            NaN                NaN  
+         47127           222047.45      125160.65                NaN  
+         65310           220495.51            NaN                NaN  
+         65305           214691.63            NaN                NaN  
+         65087           214344.00            NaN                NaN  
+         68298           212452.50            NaN                NaN  
+         68335           212196.00            NaN                NaN  
+         65309           210004.16            NaN                NaN  
+         15711           208032.34         543.46           23986.63  
+         65302           204475.99            NaN                NaN  
+         65308           202125.77            NaN                NaN  
+         68304           198694.13            NaN                NaN  
+         5116            194393.25       48755.10                NaN  
+         31885           192651.01            NaN                NaN  
+         68333           187607.40            NaN                NaN  
+         47130           186410.13        3044.53                NaN  
+         45801           186327.00            NaN                NaN  
+         68336           184322.33            NaN                NaN  
+         33926           183840.15            NaN                NaN  
+         47131           183075.45       80173.76                NaN  
+         {\ldots}                   {\ldots}            {\ldots}                {\ldots}  
+         86805                 NaN            NaN                NaN  
+         86806                 NaN            NaN                NaN  
+         86814                 NaN            NaN                NaN  
+         86827                 NaN            NaN                NaN  
+         86836                 NaN            NaN                NaN  
+         86856                 NaN            NaN                NaN  
+         86936                 NaN            NaN                NaN  
+         86966                 NaN            NaN                NaN  
+         87034                 NaN            NaN                NaN  
+         87062                 NaN            NaN                NaN  
+         87063                 NaN            NaN                NaN  
+         87118                 NaN            NaN                NaN  
+         87120                 NaN            NaN                NaN  
+         87419                 NaN            NaN                NaN  
+         87774                 NaN            NaN             119.36  
+         87951                 NaN            NaN                NaN  
+         87958                 NaN            NaN                NaN  
+         88085                 NaN            NaN                NaN  
+         88116                 NaN            NaN                NaN  
+         88221                 NaN            NaN             235.81  
+         88227                 NaN            NaN                NaN  
+         88369                 NaN            NaN           -1005.24  
+         88411                 NaN            NaN                NaN  
+         88446                 NaN            NaN                NaN  
+         88823                 NaN            NaN           17805.69  
+         89201                 NaN            NaN                NaN  
+         89214                 NaN            NaN                NaN  
+         89227                 NaN            NaN           15884.19  
+         89578                 NaN            NaN                NaN  
+         89870                 NaN            NaN                NaN  
+         
+         [89919 rows x 13 columns]
+\end{Verbatim}
+            
+    \textbf{Note: Above answers quesion who is highest paid state employee"}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}70}]:} \PY{n}{statesal}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{agency}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{actual\PYZus{}salary\PYZus{}2017}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{actual\PYZus{}salary\PYZus{}2017}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}70}]:}                             agency  actual\_salary\_2017
+         6                      Corrections   904125528.1499993
+         20                  Human Services   785568557.2899544
+         34                  Transportation   566175907.7199867
+         33                    State Police   467153889.2099977
+         22                Labor \& Industry  221732465.86999726
+         24            Liquor Control Board   161805897.5999996
+         12            Environmntl Protectn   150866342.5199989
+         7             Dept Miltry/Vets Aff  104756516.59999971
+         30                         Revenue  100555142.89999996
+         13               Executive Offices   96304194.61000004
+         5             Cnsvn \& Natrl Resrcs   89700038.30999969
+         28      Probation And Parole Board   73117959.47000006
+         18                          Health    56188254.5600004
+         16                General Services   39964335.51999999
+         1                      Agriculture    37320019.0600001
+         15                 Game Commission   34822849.16000002
+         9                        Education  30433738.999999985
+         31                           State  26944304.530000016
+         29   Pub School Employees' Ret Sys   21345666.74000001
+         4              Cmunity \& Econ Dvpt  20776928.069999985
+         14        Fish And Boat Commission         20105844.14
+         21                       Insurance  14347838.129999999
+         2           Banking and Securities  13069454.260000015
+         19  Historical \& Museum Commission  11404598.479999997
+         10     Emergency Management Agency  10768091.259999998
+         32        State Employees' Ret Sys  10668052.290000001
+         3         Civil Service Commission   5726775.559999996
+         0                            Aging   5700945.559999992
+         17               Governor'S Office          4551938.02
+         8        Drug and Alcohol Programs  4051355.7899999996
+         27                        Pennvest          2158865.29
+         26      Municipal Retirement Board  1554522.3699999996
+         25            Milk Marketing Board          1275789.24
+         11     Environmental Hearing Board          1150835.49
+         23    Lieutenant Governor'S Office   827685.3300000001
+\end{Verbatim}
+            
+    \textbf{Note: Above cell answers question of top agencies paying out
+salaries}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
